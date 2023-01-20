@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SVG Map</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+	<div class="content">
+		<div class="left-menu">
+            <input id="search" size="20" />
+            <p></p>
+			<ul id="search-items">
+                <!-- li*36>a[href="#cab$"][data-id="$"][class="map-tab-link" data-color="#522e9a"]{Кабинет $} -->
+                <li><a href="#cab1" data-id="1" class="map-tab-link" data-color="#522e9a">Кабинет 1</a></li>
+                <li><a href="#cab2" data-id="2" class="map-tab-link" data-color="#522e9a">Кабинет 2</a></li>
+                <li><a href="#cab3" data-id="3" class="map-tab-link" data-color="#522e9a">Кабинет 3</a></li>
+                <li><a href="#cab4" data-id="4" class="map-tab-link" data-color="#522e9a">Кабинет 4</a></li>
+                <li><a href="#cab5" data-id="5" class="map-tab-link" data-color="#522e9a">Кабинет 5</a></li>
+                <li><a href="#cab6" data-id="6" class="map-tab-link" data-color="#522e9a">Кабинет 6</a></li>
+                <li><a href="#cab7" data-id="7" class="map-tab-link" data-color="#522e9a">Кабинет 7</a></li>
+                <li><a href="#cab8" data-id="8" class="map-tab-link" data-color="#522e9a">Кабинет 8</a></li>
+                <li><a href="#cab9" data-id="9" class="map-tab-link" data-color="#522e9a">Кабинет 9</a></li>
+                <li><a href="#cab10" data-id="10" class="map-tab-link" data-color="#522e9a">Кабинет 10</a></li>
+                <li><a href="#cab11" data-id="11" class="map-tab-link" data-color="#522e9a">Кабинет 11</a></li>
+                <li><a href="#cab12" data-id="12" class="map-tab-link" data-color="#522e9a">Кабинет 12</a></li>
+                <li><a href="#cab13" data-id="13" class="map-tab-link" data-color="#522e9a">Кабинет 13</a></li>
+                <li><a href="#cab14" data-id="14" class="map-tab-link" data-color="#522e9a">Кабинет 14</a></li>
+                <li><a href="#cab15" data-id="15" class="map-tab-link" data-color="#522e9a">Кабинет 15</a></li>
+                <li><a href="#cab16" data-id="16" class="map-tab-link" data-color="#522e9a">Кабинет 16</a></li>
+                <li><a href="#cab17" data-id="17" class="map-tab-link" data-color="#522e9a">Кабинет 17</a></li>
+                <li><a href="#cab18" data-id="18" class="map-tab-link" data-color="#522e9a">Кабинет 18</a></li>
+                <li><a href="#cab19" data-id="19" class="map-tab-link" data-color="#522e9a">Кабинет 19</a></li>
+                <li><a href="#cab20" data-id="20" class="map-tab-link" data-color="#522e9a">Кабинет 20</a></li>
+                <li><a href="#cab21" data-id="21" class="map-tab-link" data-color="#522e9a">Кабинет 21</a></li>
+                <li><a href="#cab22" data-id="22" class="map-tab-link" data-color="#522e9a">Кабинет 22</a></li>
+                <li><a href="#cab23" data-id="23" class="map-tab-link" data-color="#522e9a">Кабинет 23</a></li>
+                <li><a href="#cab24" data-id="24" class="map-tab-link" data-color="#522e9a">Кабинет 24</a></li>
+                <li><a href="#cab25" data-id="25" class="map-tab-link" data-color="#522e9a">Кабинет 25</a></li>
+                <li><a href="#cab26" data-id="26" class="map-tab-link" data-color="#522e9a">Кабинет 26</a></li>
+                <li><a href="#cab27" data-id="27" class="map-tab-link" data-color="#522e9a">Кабинет 27</a></li>
+                <li><a href="#cab28" data-id="28" class="map-tab-link" data-color="#522e9a">Кабинет 28</a></li>
+                <li><a href="#cab29" data-id="29" class="map-tab-link" data-color="#522e9a">Кабинет 29</a></li>
+                <li><a href="#cab30" data-id="30" class="map-tab-link" data-color="#522e9a">Кабинет 30</a></li>
+                <li><a href="#cab31" data-id="31" class="map-tab-link" data-color="#522e9a">Кабинет 31</a></li>
+                <li><a href="#cab32" data-id="32" class="map-tab-link" data-color="#522e9a">Кабинет 32</a></li>
+                <li><a href="#cab33" data-id="33" class="map-tab-link" data-color="#522e9a">Кабинет 33</a></li>
+                <li><a href="#cab34" data-id="34" class="map-tab-link" data-color="#522e9a">Кабинет 34</a></li>
+                <li><a href="#cab35" data-id="35" class="map-tab-link" data-color="#522e9a">Кабинет 35</a></li>
+                <li><a href="#cab36" data-id="36" class="map-tab-link" data-color="#522e9a">Кабинет 36</a></li>
+			</ul>
+		</div>
+		<div class="map" id="svgContainer">
+			
+			<svg width="210mm" height="297mm" id="svgImage" xmlns="http://www.w3.org/2000/svg">
+                <a href="#cab1" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355"
+                    width="16.275974"
+                    height="19.320843"
+                    x="72.694321"
+                    y="112.28368"
+                    inkscape:label="cab1" />
+                </a>
+                <a href="#cab2" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-8"
+                    width="9.6073952"
+                    height="19.310993"
+                    x="62.256569"
+                    y="112.29282"
+                    inkscape:label="cab2" />
+                </a>
+                <a href="#cab3" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-9-3-3-9-4-3"
+                    width="15.728415"
+                    height="19.326527"
+                    x="45.691628"
+                    y="112.29272"
+                    inkscape:label="cab3" />
+                </a>
+                <a href="#cab4" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-9-3-3-9-4-3-2"
+                    width="15.21156"
+                    height="19.317305"
+                    x="29.689268"
+                    y="112.28632"
+                    inkscape:label="cab4" />
+                </a>
+                <a href="#cab5" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-9-3-3-9-4-3-2-7"
+                    width="8.7713041"
+                    height="19.341173"
+                    x="20.070086"
+                    y="112.28537"
+                    inkscape:label="cab5" />
+                </a>
+                <a href="#cab6" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-9-3-3-9-4"
+                    width="19.910957"
+                    height="26.795033"
+                    x="2.6694176"
+                    y="142.65913"
+                    inkscape:label="cab6" />
+                </a>
+                <a href="#cab7" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-9-3-3-9"
+                    width="12.267563"
+                    height="26.81455"
+                    x="23.406555"
+                    y="142.65714"
+                    inkscape:label="cab7" />
+                </a>
+                <a href="#cab8" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-9-3-3"
+                    width="9.2374735"
+                    height="19.010139"
+                    x="36.482674"
+                    y="142.65569"
+                    inkscape:label="cab8" />
+                </a>
+                <a href="#cab9" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-9-3"
+                    width="15.017358"
+                    height="18.988932"
+                    x="46.515621"
+                    y="142.67734"
+                    inkscape:label="cab9" />
+                </a>
+                <a href="#cab10" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-9"
+                    width="15.523537"
+                    height="18.965565"
+                    x="62.343002"
+                    y="142.68903"
+                    inkscape:label="cab10" />
+                </a>
+                <a href="#cab11" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1"
+                    width="10.362655"
+                    height="18.967752"
+                    x="78.687172"
+                    y="142.68709"
+                    inkscape:label="cab11" />
+                </a>
+                <a href="#cab12" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-99"
+                    width="34.032288"
+                    height="21.598423"
+                    x="89.844238"
+                    y="142.69016"
+                    inkscape:label="cab12" />
+                </a>
+                <a href="#cab13" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-99-2"
+                    width="30.990692"
+                    height="18.556828"
+                    x="124.74043"
+                    y="142.6666"
+                    inkscape:label="cab13" />
+                </a>
+                <a href="#cab14" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-99-2-3"
+                    width="19.674189"
+                    height="18.645864"
+                    x="156.28706"
+                    y="142.6355"
+                    inkscape:label="cab14" />
+                </a>
+                <a href="#cab15" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-1-99-2-3-5"
+                    width="29.210623"
+                    height="23.843235"
+                    x="176.58269"
+                    y="142.6478"
+                    inkscape:label="cab15" />
+                </a>
+                <a href="#cab16" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-4-5-6-8-8"
+                    width="5.6117854"
+                    height="19.439121"
+                    x="197.1519"
+                    y="112.63863"
+                    inkscape:label="cab16" />
+                </a>
+                <a href="#cab17" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-4-5-6-8"
+                    width="10.24193"
+                    height="19.423162"
+                    x="186.35104"
+                    y="112.63978"
+                    inkscape:label="cab17" />
+                </a>
+                <a href="#cab18" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-4-5-7"
+                    width="16.275974"
+                    height="19.320843"
+                    x="169.51369"
+                    y="112.73244"
+                    inkscape:label="cab18" />
+                </a>
+                <a href="#cab19" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-4-5-6"
+                    width="10.243823"
+                    height="19.271646"
+                    x="158.63133"
+                    y="112.75522"
+                    inkscape:label="cab19" />
+                </a>
+                <a href="#cab20" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-4-5"
+                    width="16.275974"
+                    height="19.320843"
+                    x="141.6817"
+                    y="112.76625"
+                    inkscape:label="cab20" />
+                </a>
+                <a href="#cab21" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-4"
+                    width="16.275974"
+                    height="19.320843"
+                    x="124.73032"
+                    y="112.75002"
+                    inkscape:label="cab21" />
+                </a>
+                <a href="#cab22" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-8"
+                    width="14.157506"
+                    height="10.063278"
+                    x="109.89001"
+                    y="95.266487"
+                    inkscape:label="cab22" />
+                </a>
+                <a href="#cab23" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-8-3"
+                    width="14.190986"
+                    height="20.205204"
+                    x="109.8899"
+                    y="74.259125"
+                    inkscape:label="cab23" />
+                </a>
+                <a href="#cab24" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0-7-0"
+                    width="14.329887"
+                    height="10.060334"
+                    x="109.84391"
+                    y="63.473419"
+                    inkscape:label="cab24" />
+                </a>
+                <a href="#cab25" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0-7-1-73"
+                    width="14.329887"
+                    height="10.060334"
+                    x="109.84391"
+                    y="52.811813"
+                    inkscape:label="cab25" />
+                </a>
+                <a href="#cab26" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0-7-1-7-0"
+                    width="14.329887"
+                    height="10.060334"
+                    x="109.84391"
+                    y="42.150204"
+                    inkscape:label="cab26" />
+                </a>
+                <a href="#cab27" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0-7-1-2-6"
+                    width="14.329887"
+                    height="10.060334"
+                    x="109.84125"
+                    y="31.331327"
+                    inkscape:label="cab27" />
+                </a>
+                <a href="#cab28" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0-7-1-2-3-5"
+                    width="14.329887"
+                    height="10.060334"
+                    x="109.84391"
+                    y="20.55283"
+                    inkscape:label="cab28" />
+                </a>
+                <a href="#cab29" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0-7-1-2-3"
+                    width="14.329887"
+                    height="10.060334"
+                    x="89.915367"
+                    y="20.382332"
+                    inkscape:label="cab29" />
+                </a>
+                <a href="#cab30" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0-7-1-2"
+                    width="14.329887"
+                    height="10.060334"
+                    x="89.897217"
+                    y="31.16083"
+                    inkscape:label="cab30" />
+                </a>
+                <a href="#cab31" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0-7-1-7"
+                    width="14.329887"
+                    height="10.060334"
+                    x="89.853386"
+                    y="41.979706"
+                    inkscape:label="cab31" />
+                </a>
+                <a href="#cab32" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0-7-1"
+                    width="14.329887"
+                    height="10.060334"
+                    x="89.853378"
+                    y="52.641315"
+                    inkscape:label="cab32" />
+                </a>
+                <a href="#cab33" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0-7"
+                    width="14.329887"
+                    height="10.060334"
+                    x="89.853386"
+                    y="63.302925"
+                    inkscape:label="cab33" />
+                </a>
+                <a href="#cab34" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9-0"
+                    width="14.329887"
+                    height="10.060334"
+                    x="89.809555"
+                    y="73.997795"
+                    inkscape:label="cab34" />
+                </a>
+                <a href="#cab35" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2-9"
+                    width="14.329887"
+                    height="10.060334"
+                    x="89.765724"
+                    y="84.659409"
+                    inkscape:label="cab35" />
+                </a>
+                <a href="#cab36" class="map-tab-link" data-color="#522e9a">
+                    <rect
+                    style="display:inline;fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+                    id="rect355-2"
+                    width="14.329887"
+                    height="10.060334"
+                    x="89.720139"
+                    y="95.267952"
+                    inkscape:label="cab36" />
+                </a>
+            </svg>
+
+		</div>
+        <div class="level">
+            <ul>
+                <li>
+                    <button id="level1">1</button>
+                </li>
+                <li>
+                    <button id="level2">2</button>
+                </li>
+            </ul>
+        </div>
+	</div>
+	<script src="../js/script.js"></script>
+</body>
+</html>
