@@ -34,7 +34,25 @@ function search() {
     }
 }
 
+function search2() {
+    let input = document.getElementById("search2");
+    let filter = input.value.toUpperCase();
+    let ul = document.getElementById("search-items2");
+    let li = ul.getElementsByTagName("li");
+ 
+    // Перебирайте все элементы списка и скрывайте те, которые не соответствуют поисковому запросу
+    for (let i = 0; i < li.length; i++) {
+        let a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
 document.addEventListener('keyup', search);
+document.addEventListener('keyup', search2);
 
 $leftLinks.forEach(el => {
 	el.addEventListener('mouseenter', (e) => {
@@ -55,9 +73,32 @@ $leftLinks.forEach(el => {
 		let currentElement = document.querySelector(`.map a[href="${selfClass}"]`);
 		let currentPolygon = currentElement.querySelectorAll('rect');
 		let currentPath = currentElement.querySelectorAll('path');
-		if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
-		if (currentPath) currentPath.forEach(el => el.style.cssText = ``);
-		self.classList.remove('active');
+		if (!self.classList.contains('click')) {
+			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
+			if (currentPath) currentPath.forEach(el => el.style.cssText = ``);
+			self.classList.remove('active');
+		}
+	});
+
+	el.addEventListener('click', (e) => {
+		e.preventDefault();
+		let self = e.currentTarget;
+		let selfClass = self.getAttribute('href');
+		let currentElement = document.querySelector(`.map a[href="${selfClass}"]`);
+		// let id = parseInt(currentElement.dataset.id);
+		let color = self.dataset.color;
+		let currentPolygon = currentElement.querySelectorAll('rect');
+		if (self.classList.contains('click')) {
+			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
+			self.classList.remove('active');
+			self.classList.remove('click');
+		}
+		else {
+			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
+			self.classList.add('active');
+			self.classList.add('click');
+		}
+		// requestData(id);
 	});
 });
 
@@ -66,32 +107,46 @@ $mapLinks.forEach(el => {
 		let self = e.currentTarget;
 		let selfClass = self.getAttribute('href');
 		let color = self.dataset.color;
-		let currentElement = document.querySelector(`.left-menu a[href="${selfClass}"]`);
+		let currentElement = document.querySelectorAll(`.left-menu a[href="${selfClass}"]`);
 		let currentPolygon = self.querySelectorAll('rect');
 		let currentPath = self.querySelectorAll('path');
 		if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
 		if (currentPath) currentPath.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
-		currentElement.classList.add('active');
+		currentElement.forEach(el => el.classList.add('active'));
 	});
 
 	el.addEventListener('mouseleave', (e) => {
 		let self = e.currentTarget;
 		let selfClass = self.getAttribute('href');
-		let currentElement = document.querySelector(`.left-menu a[href="${selfClass}"]`);
+		let currentElement = document.querySelectorAll(`.left-menu a[href="${selfClass}"]`);
 		let currentPolygon = self.querySelectorAll('rect');
 		let currentPath = self.querySelectorAll('path');
-		if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
-		if (currentPath) currentPath.forEach(el => el.style.cssText = ``);
-		currentElement.classList.remove('active');
+		if (!currentElement[0].classList.contains('click')) {
+			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
+			if (currentPath) currentPath.forEach(el => el.style.cssText = ``);
+			currentElement.forEach(el => el.classList.remove('active'));
+		}
 	});
 
 	el.addEventListener('click', (e) => {
 		e.preventDefault();
 		let self = e.currentTarget;
 		let selfClass = self.getAttribute('href');
-		let currentElement = document.querySelector(`.left-menu a[href="${selfClass}"]`);
-		let id = parseInt(currentElement.dataset.id);
-		requestData(id);
+		let currentElement = document.querySelectorAll(`.left-menu a[href="${selfClass}"]`);
+		// let id = parseInt(currentElement.dataset.id);
+		let color = self.dataset.color;
+		let currentPolygon = self.querySelectorAll('rect');
+		if (currentElement[0].classList.contains('click')) {
+			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
+			currentElement.forEach(el => el.classList.remove('active'));
+			currentElement.forEach(el => el.classList.remove('click'));
+		}
+		else {
+			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
+			currentElement.forEach(el => el.classList.add('active'));
+			currentElement.forEach(el => el.classList.add('click'));
+		}
+		// requestData(id);
 	});
 });
 

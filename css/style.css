@@ -11,10 +11,15 @@
 	padding: 10px 100px;
 }
 
+.left-menu input {
+	padding: 10px;
+}
+
 .left-menu ul {
 	list-style-type: none;
 	border: 1px solid #bfbfbf;
-	max-height: 800px;
+	max-height: 20em;
+	min-height: 20em;
 	overflow-y: scroll;
 }
 
