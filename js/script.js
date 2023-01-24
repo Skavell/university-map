@@ -1,6 +1,6 @@
 const $leftLinks = document.querySelectorAll('.left-menu a'),
 			$mapLinks = document.querySelectorAll('.map a'),
-			$info = document.querySelector('.info');
+			$info = document.querySelector('.info	');
 
 const requestData = (id = 1) => {
 	fetch('data.json')
@@ -47,6 +47,16 @@ $leftLinks.forEach(el => {
 		if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
 		if (currentPath) currentPath.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
 		self.classList.add('active');
+		//код ярика
+		let dataID = self.getAttribute('data-id')
+		if (dataID >= 37 && dataID <= 72) {
+			appearing2floor();
+		}
+		if (dataID >= 1 && dataID <= 36) {
+			appearing1floor();
+		}
+		
+
 	});
 
 	el.addEventListener('mouseleave', (e) => {
@@ -95,13 +105,19 @@ $mapLinks.forEach(el => {
 	});
 });
 
-const svgImage = document.getElementById("svgImage");
+// Тут я добавил svgImage2 для второго этажа
+
+const svgImage1= document.getElementById("svgImage1");
+const svgImage2= document.getElementById("svgImage2");
 const svgContainer = document.getElementById("svgContainer");
+// const svgContainer2 = document.getElementById("svgContainer2");
+
 
 // var viewBox = {x:0,y:0,w:svgImage.clientWidth,h:svgImage.clientHeight};
 var viewBox = {x:-24,y:13.5,w:258.5,h:170.5};
-svgImage.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
-const svgSize = {w:svgImage.clientWidth,h:svgImage.clientHeight};
+svgImage1.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+svgImage2.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+const svgSize = {w:svgImage1.clientWidth,h:svgImage1.clientHeight};
 var isPanning = false;
 var startPoint = {x:0,y:0};
 var endPoint = {x:0,y:0};;
@@ -119,8 +135,9 @@ svgContainer.onmousewheel = function(e) {
    var dy = dh*my/svgSize.h;
    viewBox = {x:viewBox.x+dx,y:viewBox.y+dy,w:viewBox.w-dw,h:viewBox.h-dh};
    scale = svgSize.w/viewBox.w;
-   zoomValue.innerText = `${Math.round(scale*100)/100}`;
-   svgImage.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+//    zoomValue.innerText = `${Math.round(scale*100)/100}`;
+   svgImage1.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+   svgImage2.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 
 }
 
@@ -136,7 +153,8 @@ svgContainer.onmousemove = function(e){
   var dx = (startPoint.x - endPoint.x)/scale;
   var dy = (startPoint.y - endPoint.y)/scale;
   var movedViewBox = {x:viewBox.x+dx,y:viewBox.y+dy,w:viewBox.w,h:viewBox.h};
-  svgImage.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
+  svgImage1.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
+  svgImage2.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
    }
 }
 
@@ -146,7 +164,8 @@ svgContainer.onmouseup = function(e){
   var dx = (startPoint.x - endPoint.x)/scale;
   var dy = (startPoint.y - endPoint.y)/scale;
   viewBox = {x:viewBox.x+dx,y:viewBox.y+dy,w:viewBox.w,h:viewBox.h};
-  svgImage.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+  svgImage1.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+  svgImage2.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
   isPanning = false;
    }
 }
@@ -154,3 +173,34 @@ svgContainer.onmouseup = function(e){
 svgContainer.onmouseleave = function(e){
  isPanning = false;
 }
+
+
+// код ярика
+
+const map1 = document.getElementById('map1')
+const map2 = document.getElementById('map2')
+const button1 = document.getElementById('level1');
+const button2 = document.getElementById('level2');
+const h1 = document.getElementById('NameFloor')
+
+// просто добавления класса появления и скрытия
+
+function appearing2floor() {
+	map1.classList.add('show-out');
+	map2.classList.add('show-in');
+	h1.innerHTML = '2 этаж';
+}
+
+button2.addEventListener('click', () => {
+	appearing2floor();
+})
+
+function appearing1floor() {
+	map1.classList.remove('show-out');
+	map2.classList.remove('show-in');
+	h1.innerHTML = '1 этаж';
+}
+
+button1.addEventListener('click', () => {
+	appearing1floor();
+})
