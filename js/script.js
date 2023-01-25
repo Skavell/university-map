@@ -2,6 +2,7 @@ const $leftLinks = document.querySelectorAll('.left-menu a'),
 			$mapLinks = document.querySelectorAll('.map a'),
 			$info = document.querySelector('.info	');
 
+
 const requestData = (id = 1) => {
 	fetch('data.json')
 	.then((response) => {
@@ -232,6 +233,8 @@ svgContainer.onmouseleave = function(e){
 
 // код ярика
 
+
+
 const map1 = document.getElementById('map1')
 const map2 = document.getElementById('map2')
 const button1 = document.getElementById('level1');
@@ -259,3 +262,31 @@ function appearing1floor() {
 button1.addEventListener('click', () => {
 	appearing1floor();
 })
+
+const buttRoute = document.getElementById('route');
+const Tochka_x1 = document.getElementById('1');
+const Tochka_x2 = document.getElementById('2');
+console.log(Tochka_x2.getAttribute('data-neighbors')[2])
+const svg = d3.select('#svgImage1')
+
+	
+
+buttRoute.addEventListener('click', () => {
+	var newElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+	newElement.setAttribute('d', 'M' + Tochka_x1.getAttribute('cx') + ',' + Tochka_x1.getAttribute('cy') + 'L' + Tochka_x2.getAttribute('cx') + ',' + Tochka_x2.getAttribute('cy'));
+	newElement.style.stroke = '#000000';
+	newElement.style.strokeWidth = '1px'; 
+	svgImage1.appendChild(newElement);
+})
+	
+
+
+
+// buttRoute.addEventListener('click', () => {
+// 	svg.append("line")
+//        .attr("x1", Tochka_x1.getAttribute('cx'))
+//        .attr("x2", Tochka_x2.getAttribute('cx'))
+//        .attr("y1", Tochka_x1.getAttribute('cy'))
+//        .attr("y2", Tochka_x2.getAttribute('cy'))
+//        .attr("stroke", "black")
+// })

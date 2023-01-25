@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SVG Map</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
   </head>
 
   <body>
     <h1 id="NameFloor">1 этаж</h1>
+    <button id="route">Путь</button>
     <div class="content">
       <div class="left-menu">
         <input id="search" size="20" />
@@ -676,6 +678,69 @@
             id="svgImage1"
             xmlns="http://www.w3.org/2000/svg"
           >
+            <circle
+            id="1"
+            style="fill:#000000; stroke:none"
+            cx="107"
+            cy="25"
+            r="1"
+            data-neighbors="2" />
+            <circle
+            id="2"
+            style="fill:#000000; stroke:none"
+            cx="107"
+            cy="36"
+            r="1"
+            data-neighbors="1,3" />
+            <circle
+            id="3"
+            style="fill:#000000; stroke:none"
+            cx="107"
+            cy="47"
+            r="1"
+            data-neighbors="2,4" />
+            <circle
+            id="4"
+            style="fill:#000000; stroke:none"
+            cx="107"
+            cy="58"
+            r="1"
+            data-neighbors="3,5" />
+            <circle
+            id="5"
+            style="fill:#000000; stroke:none"
+            cx="107"
+            cy="68"
+            r="1"
+            data-neighbors="4,6" />
+            <circle
+            id="6"
+            style="fill:#000000; stroke:none"
+            cx="107"
+            cy="79"
+            r="1"
+            data-neighbors="5,7" />
+            <circle
+            id="7"
+            style="fill:#000000; stroke:none"
+            cx="107"
+            cy="85"
+            r="1"
+            data-neighbors="6,8" />
+            <circle
+            id="8"
+            style="fill:#000000; stroke:none"
+            cx="107"
+            cy="90"
+            r="1"
+            data-neighbors="7,9" />
+            <circle
+            id="9"
+            style="fill:#000000; stroke:none"
+            cx="107"
+            cy="100"
+            r="1"
+            data-neighbors="8,10" />
             <a href="#cab1" class="map-tab-link" data-color="#522e9a">
               <rect
                 style="
@@ -2137,7 +2202,6 @@
         </ul>
       </div>
     </div>
-
-    <script src="../js/script.js"></script>
+    <script src="../js/script.js" type="module"></script>
   </body>
 </html>
