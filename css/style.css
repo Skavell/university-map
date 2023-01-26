@@ -113,5 +113,8 @@ h1 {
 	font-size: 80px;
 }
 
-
+#textv {
+	text-anchor: middle;
+	alignment-baseline: middle;
+}
 

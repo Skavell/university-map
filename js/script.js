@@ -263,45 +263,10 @@ button1.addEventListener('click', () => {
 	appearing1floor();
 })
 
-// const buttRoute = document.getElementById('route');
-// const Tochka_8 = document.getElementById('8');
-// const Tochka_9 = document.getElementById('9');
-// const Tochka_10 = document.getElementById('10');
-// const Tochka_11 = document.getElementById('11');
-// const Tochka_12 = document.getElementById('12');
-// const Tochka_13 = document.getElementById('13');
-// const Tochka_14 = document.getElementById('14');  
 
 const svg = d3.select('#svgImage1');
 
-
-// function FindPath(start, end) {
-// 	let path = [start];
-// 	let visited = {};
-// 	let queue = [start]
-// 	visited[start.id] = true;
-// 	while (queue.length > 0) {
-// 		let current = queue.shift();
-// 		if (current === end) {
-// 			return path;
-// 		}
-// 		let neighbors = current.getAttribute("data-neighbors").split(",");
-// 		for (let i = 0; i < neighbors.length; i += 1) {
-// 			// console.log(neighbors[i].trim());
-// 			let neighbor = 	document.getElementById(neighbors[i].trim());
-// 			if (!visited[neighbor.id]) {
-// 				path.push(neighbor);
-// 				visited[neighbor.id] = true;
-// 				queue.push(neighbor);
-// 			}
-// 		}
-// 	}
-// }
-
-
-// console.log(FindPath(Tochka_8, Tochka_14))
-// FindPath(Tochka_8, Tochka_14)
-
+// ********* рисование пути *********
 
 // Создаю класс граф
 class Graph {
@@ -441,6 +406,21 @@ graph.addVertex('11');
 graph.addVertex('12');
 graph.addVertex('13');
 graph.addVertex('14');
+graph.addVertex('15');
+graph.addVertex('16');
+graph.addVertex('17');
+graph.addVertex('18');
+graph.addVertex('19');
+graph.addVertex('20');
+graph.addVertex('21');
+graph.addVertex('22');
+graph.addVertex('23');
+graph.addVertex('24');
+graph.addVertex('25');
+graph.addVertex('26');
+graph.addVertex('27');
+graph.addVertex('28');
+graph.addVertex('29');
 
 graph.addEdge('1', '2');
 graph.addEdge('2', '1');
@@ -470,19 +450,44 @@ graph.addEdge('13', '12');
 graph.addEdge('13', '14');
 graph.addEdge('14', '11');
 graph.addEdge('14', '13');
+graph.addEdge('14', '15');
+graph.addEdge('15', '14');
+graph.addEdge('13', '15');
+graph.addEdge('15', '13');
+graph.addEdge('14', '16');
+graph.addEdge('16', '14');
+graph.addEdge('16', '17');
+graph.addEdge('17', '16');
+graph.addEdge('17', '18');
+graph.addEdge('18', '17');
+graph.addEdge('18', '19');
+graph.addEdge('19', '18');
+graph.addEdge('19', '20');
+graph.addEdge('20', '19');
+graph.addEdge('20', '21');
+graph.addEdge('21', '20');
+graph.addEdge('13', '22');
+graph.addEdge('22', '13');
+graph.addEdge('22', '23');
+graph.addEdge('23', '22');
+graph.addEdge('23', '24');
+graph.addEdge('24', '23');
+graph.addEdge('24', '25');
+graph.addEdge('25', '24');
+graph.addEdge('25', '26');
+graph.addEdge('26', '25');
+graph.addEdge('26', '27');
+graph.addEdge('27', '26');
+graph.addEdge('13', '28');
+graph.addEdge('28', '13');
+graph.addEdge('14', '28');
+graph.addEdge('28', '14');
+graph.addEdge('21', '29');
+graph.addEdge('29', '21');
+
   
 
-// let circles = [Tochka_8, Tochka_9, Tochka_10, Tochka_11, Tochka_12, Tochka_13, Tochka_14];
-// console.log(circles)
-// let startCircle = Tochka_14;
-// let endCircle = Tochka_14;
-// let startIndex = circles.indexOf(startCircle);
-// let endIndex = circles.indexOf(endCircle);
-// let route = [];
-// for (let i = startIndex; i !== endIndex; i = (i + 1) % circles.length) {
-// 	route.push(circles[i])
-// }
-let route = graph.findShortestPath('14', '1')
+// let route = graph.findShortestPath('1', '29')
 for (let i = 0; i < route.length - 1; i += 1) {
 	let circle1 = document.getElementById(route[i]);
 	let circle2 = document.getElementById(route[i + 1]);
@@ -498,25 +503,4 @@ for (let i = 0; i < route.length - 1; i += 1) {
 
 }
 
-
-
-// buttRoute.addEventListener('click', () => {
-// 	var newElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
-// 	newElement.setAttribute('d', 'M' + Tochka_1.getAttribute('cx') + ',' + Tochka_1.getAttribute('cy') + 'L' + Tochka_2.getAttribute('cx') + ',' + Tochka_2.getAttribute('cy'));
-// 	newElement.style.stroke = '#000000';
-// 	newElement.style.strokeWidth = '1px'; 
-// 	svgImage1.appendChild(newElement);
-// })
-
-
-
-
-// buttRoute.addEventListener('click', () => {
-// 	svg.append("line")
-//        .attr("x1", Tochka_x1.getAttribute('cx'))
-//        .attr("x2", Tochka_x2.getAttribute('cx'))
-//        .attr("y1", Tochka_x1.getAttribute('cy'))
-//        .attr("y2", Tochka_x2.getAttribute('cy'))
-//        .attr("stroke", "black")
-// })
 
