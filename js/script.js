@@ -263,14 +263,14 @@ button1.addEventListener('click', () => {
 	appearing1floor();
 })
 
-const buttRoute = document.getElementById('route');
-const Tochka_8 = document.getElementById('8');
-const Tochka_9 = document.getElementById('9');
-const Tochka_10 = document.getElementById('10');
-const Tochka_11 = document.getElementById('11');
-const Tochka_12 = document.getElementById('12');
-const Tochka_13 = document.getElementById('13');
-const Tochka_14 = document.getElementById('14');
+// const buttRoute = document.getElementById('route');
+// const Tochka_8 = document.getElementById('8');
+// const Tochka_9 = document.getElementById('9');
+// const Tochka_10 = document.getElementById('10');
+// const Tochka_11 = document.getElementById('11');
+// const Tochka_12 = document.getElementById('12');
+// const Tochka_13 = document.getElementById('13');
+// const Tochka_14 = document.getElementById('14');  
 
 const svg = d3.select('#svgImage1');
 
@@ -303,32 +303,200 @@ const svg = d3.select('#svgImage1');
 // FindPath(Tochka_8, Tochka_14)
 
 
+// Создаю класс граф
+class Graph {
+	constructor() {
+	  this.vertices = {}; // список смежности графа
+	}
+	
+	addVertex(value) {
+	  if (!this.vertices[value]) {
+		this.vertices[value] = [];
+	  }
+	}
+	
+	addEdge(vertex1, vertex2) {
+	  if (!(vertex1 in this.vertices) || !(vertex2 in this.vertices)) {
+		throw new Error('В графе нет таких вершин');
+	  }
+  
+	  if (!this.vertices[vertex1].includes(vertex2)) {
+		this.vertices[vertex1].push(vertex2);
+	  }
+	  if (!this.vertices[vertex2].includes(vertex1)) {
+		this.vertices[vertex2].push(vertex1);
+	  }
+	}
 
+	dfs(startVertex, callback) {
+		let list = this.vertices; // список смежности
+		let stack = [startVertex]; // стек вершин для перебора
+		let visited = { [startVertex]: 1 }; // посещенные вершины
+		
+		function handleVertex(vertex) {
+		  // вызываем коллбэк для посещенной вершины
+		  callback(vertex);
+		  
+		  // получаем список смежных вершин
+		  let reversedNeighboursList = [...list[vertex]].reverse();
+		 
+		  reversedNeighboursList.forEach(neighbour => {
+			if (!visited[neighbour]) {
+			  // отмечаем вершину как посещенную
+			  visited[neighbour] = 1;
+			  // добавляем в стек
+			  stack.push(neighbour);
+			}
+		  });
+		}
+		
+		// перебираем вершины из стека, пока он не опустеет
+		while(stack.length) {
+		  let activeVertex = stack.pop();
+		  handleVertex(activeVertex);
+		}
+		
+		// проверка на изолированные фрагменты
+		stack = Object.keys(this.vertices);
+	
+		while(stack.length) {
+		  let activeVertex = stack.pop();
+		  if (!visited[activeVertex]) {
+			visited[activeVertex] = 1;
+			handleVertex(activeVertex);
+		  }
+		}
+	  }
 
+	  bfs2(startVertex) {
+		let list = this.vertices; 
+		let queue = [startVertex];
+		let visited = { [startVertex]: 1 }; 
+		
+		// кратчайшее расстояние от стартовой вершины
+		let distance = { [startVertex]: 0 }; 
+		// предыдущая вершина в цепочке
+		let previous = { [startVertex]: null };
+	
+		function handleVertex(vertex) {
+		  let neighboursList = list[vertex];
+	
+		  neighboursList.forEach(neighbour => {
+			if (!visited[neighbour]) {
+			  visited[neighbour] = 1;
+			  queue.push(neighbour);
+			  // сохраняем предыдущую вершину
+			  previous[neighbour] = vertex;
+			  // сохраняем расстояние 
+			  distance[neighbour] = distance[vertex] + 1;
+			}
+		  });
+		}
+	
+		// перебираем вершины из очереди, пока она не опустеет
+		while(queue.length) {
+		  let activeVertex = queue.shift();
+		  handleVertex(activeVertex);
+		}
+		
+		return { distance, previous }
+	  }
 
+	  findShortestPath(startVertex, finishVertex) {
+		let result = this.bfs2(startVertex);
+	
+		if (!(finishVertex in result.previous)) 
+			throw new Error(`Нет пути из вершины ${startVertex} в вершину ${finishVertex}`);
+			
+		let path = [];
+		
+		let currentVertex = finishVertex;
+		
+		while(currentVertex !== startVertex) {
+		  path.unshift(currentVertex);
+		  currentVertex = result.previous[currentVertex];
+		}
+		
+		path.unshift(startVertex);
+		
+		return path;
+	  }
+	
+  }
+
+// Создаю сам граф
+const graph = new Graph();
+
+graph.addVertex('1');
+graph.addVertex('2');
+graph.addVertex('3');
+graph.addVertex('4');
+graph.addVertex('5');
+graph.addVertex('6');
+graph.addVertex('7');
+graph.addVertex('8');
+graph.addVertex('9');
+graph.addVertex('10');
+graph.addVertex('11');
+graph.addVertex('12');
+graph.addVertex('13');
+graph.addVertex('14');
+
+graph.addEdge('1', '2');
+graph.addEdge('2', '1');
+graph.addEdge('2', '3');
+graph.addEdge('3', '2');
+graph.addEdge('3', '4');
+graph.addEdge('4', '3');
+graph.addEdge('4', '5');
+graph.addEdge('5', '4');
+graph.addEdge('5', '6');
+graph.addEdge('6', '5');
+graph.addEdge('6', '7');
+graph.addEdge('7', '6');
+graph.addEdge('7', '8');
+graph.addEdge('8', '7');
+graph.addEdge('8', '9');
+graph.addEdge('9', '8');
+graph.addEdge('9', '10');
+graph.addEdge('10', '9');
+graph.addEdge('10', '11');
+graph.addEdge('10', '12');
+graph.addEdge('11', '10');
+graph.addEdge('11', '14');
+graph.addEdge('12', '10');
+graph.addEdge('12', '13');
+graph.addEdge('13', '12');
+graph.addEdge('13', '14');
+graph.addEdge('14', '11');
+graph.addEdge('14', '13');
+  
 
 // let circles = [Tochka_8, Tochka_9, Tochka_10, Tochka_11, Tochka_12, Tochka_13, Tochka_14];
 // console.log(circles)
 // let startCircle = Tochka_14;
-// let endCircle = Tochka_8;
+// let endCircle = Tochka_14;
 // let startIndex = circles.indexOf(startCircle);
 // let endIndex = circles.indexOf(endCircle);
 // let route = [];
 // for (let i = startIndex; i !== endIndex; i = (i + 1) % circles.length) {
 // 	route.push(circles[i])
 // }
-// for (let i = 0; i < route.length - 1; i += 1) {
-// 	let x1 = route[i].getAttribute('cx');
-// 	let y1 = route[i].getAttribute('cy');
-// 	let x2 = route[i + 1].getAttribute('cx');
-// 	let y2 = route[i + 1].getAttribute('cy');
-// 	let newElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
-// 	newElement.setAttribute('d', 'M' + x1 + ',' + y1 + 'L' + x2 + ',' + y2);
-// 	newElement.style.stroke = '#000000';
-// 	newElement.style.strokeWidth = '2px'; 
-// 	svgImage1.appendChild(newElement);
+let route = graph.findShortestPath('14', '1')
+for (let i = 0; i < route.length - 1; i += 1) {
+	let circle1 = document.getElementById(route[i]);
+	let circle2 = document.getElementById(route[i + 1]);
+	let x1 = circle1.getAttribute('cx');
+	let y1 = circle1.getAttribute('cy');
+	let x2 = circle2.getAttribute('cx');
+	let y2 = circle2.getAttribute('cy');
+	let newElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+	newElement.setAttribute('d', 'M' + x1 + ',' + y1 + 'L' + x2 + ',' + y2);
+	newElement.style.stroke = '#000000';
+	newElement.style.strokeWidth = '2px'; 
+	svgImage1.appendChild(newElement);
 
-// }
+}
 
 
 
