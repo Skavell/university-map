@@ -170,14 +170,14 @@ const svgContainer = document.getElementById("svgContainer");
 
 
 // var viewBox = {x:0,y:0,w:svgImage.clientWidth,h:svgImage.clientHeight};
-var viewBox = { x: -24, y: 13.5, w: 258.5, h: 170.5 };
+var viewBox = { x: -9.2, y: 0.4, w: 245, h: 161.5 };
 svgImage1.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 svgImage2.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 const svgSize = { w: svgImage1.clientWidth, h: svgImage1.clientHeight };
 var isPanning = false;
 var startPoint = { x: 0, y: 0 };
 var endPoint = { x: 0, y: 0 };;
-var scale = 1;
+var scale = 5.74;
 
 svgContainer.onmousewheel = function (e) {
 	e.preventDefault();
