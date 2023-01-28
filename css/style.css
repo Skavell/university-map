@@ -113,8 +113,10 @@ h1 {
 	font-size: 80px;
 }
 
-#textv {
-	text-anchor: middle;
-	alignment-baseline: middle;
+body text { 
+	-ms-user-select: none; 
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	user-select: none; 
 }
 

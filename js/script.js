@@ -68,10 +68,10 @@ $leftLinks.forEach(el => {
 		self.classList.add('active');
 		//код ярика
 		let dataID = self.getAttribute('data-id')
-		if (dataID >= 37 && dataID <= 72) {
+		if (dataID >= 30 && dataID <= 61) {
 			appearing2floor();
 		}
-		if (dataID >= 1 && dataID <= 36) {
+		if (dataID >= 1 && dataID <= 29) {
 			appearing1floor();
 		}
 
@@ -420,6 +420,8 @@ graph.addVertex('25');
 graph.addVertex('26');
 graph.addVertex('27');
 graph.addVertex('28');
+graph.addVertex('1239');
+graph.addVertex('100');
 graph.addVertex('29');
 
 graph.addEdge('1', '2');
@@ -482,12 +484,16 @@ graph.addEdge('13', '28');
 graph.addEdge('28', '13');
 graph.addEdge('14', '28');
 graph.addEdge('28', '14');
-graph.addEdge('21', '29');
-graph.addEdge('29', '21');
+graph.addEdge('14', '100');
+graph.addEdge('100', '14');
+graph.addEdge('100', '27');
+graph.addEdge('27', '100');
+
+graph.addEdge('1239', '6');
 
   
 
-// let route = graph.findShortestPath('1', '29')
+// let route = graph.findShortestPath('1', '27')
 for (let i = 0; i < route.length - 1; i += 1) {
 	let circle1 = document.getElementById(route[i]);
 	let circle2 = document.getElementById(route[i + 1]);
