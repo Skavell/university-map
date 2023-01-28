@@ -165,6 +165,8 @@ $mapLinks.forEach(el => {
 
 const svgImage1 = document.getElementById("svgImage1");
 const svgImage2 = document.getElementById("svgImage2");
+const svgImage3 = document.getElementById("svgImage3");
+const svgImage4 = document.getElementById("svgImage4");
 const svgContainer = document.getElementById("svgContainer");
 // const svgContainer2 = document.getElementById("svgContainer2");
 
@@ -173,6 +175,8 @@ const svgContainer = document.getElementById("svgContainer");
 var viewBox = { x: -9.2, y: 0.4, w: 245, h: 161.5 };
 svgImage1.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 svgImage2.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+svgImage3.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+svgImage4.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 const svgSize = { w: svgImage1.clientWidth, h: svgImage1.clientHeight };
 var isPanning = false;
 var startPoint = { x: 0, y: 0 };
@@ -194,6 +198,8 @@ svgContainer.onmousewheel = function (e) {
 	//    zoomValue.innerText = `${Math.round(scale*100)/100}`;
 	svgImage1.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 	svgImage2.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+	svgImage3.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+	svgImage4.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 
 }
 
@@ -211,6 +217,8 @@ svgContainer.onmousemove = function (e) {
 		var movedViewBox = { x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h };
 		svgImage1.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
 		svgImage2.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
+		svgImage3.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
+		svgImage4.setAttribute('viewBox', `${movedViewBox.x} ${movedViewBox.y} ${movedViewBox.w} ${movedViewBox.h}`);
 	}
 }
 
@@ -222,6 +230,8 @@ svgContainer.onmouseup = function (e) {
 		viewBox = { x: viewBox.x + dx, y: viewBox.y + dy, w: viewBox.w, h: viewBox.h };
 		svgImage1.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 		svgImage2.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+		svgImage3.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
+		svgImage4.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
 		isPanning = false;
 	}
 }
@@ -237,8 +247,12 @@ svgContainer.onmouseleave = function (e) {
 
 const map1 = document.getElementById('map1')
 const map2 = document.getElementById('map2')
+const map3 = document.getElementById('map3')
+const map4 = document.getElementById('map4')
 const button1 = document.getElementById('level1');
 const button2 = document.getElementById('level2');
+const button3 = document.getElementById('level3');
+const button4 = document.getElementById('level4');
 const h1 = document.getElementById('NameFloor')
 
 // просто добавления класса появления и скрытия
@@ -246,23 +260,48 @@ const h1 = document.getElementById('NameFloor')
 function appearing2floor() {
 	map1.classList.add('show-out');
 	map2.classList.add('show-in');
+	map3.classList.remove('show-in');
+	map4.classList.remove('show-in');
 	h1.innerHTML = '2 этаж';
+}
+function appearing3floor() {
+	map1.classList.add('show-out');
+	map2.classList.remove('show-in');
+	map3.classList.add('show-in');
+	map4.classList.remove('show-in');
+	h1.innerHTML = '3 этаж';
 }
 
 button2.addEventListener('click', () => {
 	appearing2floor();
 })
+button3.addEventListener('click', () => {
+	appearing3floor();
+})
 
 function appearing1floor() {
 	map1.classList.remove('show-out');
 	map2.classList.remove('show-in');
+	map3.classList.remove('show-in');
+	map4.classList.remove('show-in');
 	h1.innerHTML = '1 этаж';
+}
+function appearing4floor() {
+	map1.classList.add('show-out');
+	map2.classList.remove('show-in');
+	map3.classList.remove('show-in');
+	map4.classList.add('show-in');
+
+	h1.innerHTML = '4 этаж';
 }
 
 button1.addEventListener('click', () => {
 	appearing1floor();
 })
 
+button4.addEventListener('click', () => {
+	appearing4floor();
+})
 
 const svg = d3.select('#svgImage1');
 

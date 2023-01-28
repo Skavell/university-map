@@ -92,6 +92,13 @@ a {
 #map2 {
 	display: none;
 }
+#map3 {
+	display: none;
+}
+
+#map4 {
+	display: none;
+}
 
 #map1.show-out {
 	display: none;
@@ -101,8 +108,14 @@ a {
 	display: block ;
 	
 }
+#map3.show-in {
+	display: block ;	
+}
+#map4.show-in {
+	display: block ;	
+}
 
-#level1, #level2 {
+#level1, #level2, #level3, #level4 {
 	cursor: pointer;
 }
 
