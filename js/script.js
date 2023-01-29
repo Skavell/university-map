@@ -54,7 +54,7 @@ function search2() {
 
 document.addEventListener('keyup', search);
 document.addEventListener('keyup', search2);
-
+let array = [];
 $leftLinks.forEach(el => {
 	el.addEventListener('mouseenter', (e) => {
 		let self = e.currentTarget;
@@ -69,11 +69,18 @@ $leftLinks.forEach(el => {
 		//код ярика
 		let dataID = self.getAttribute('data-id')
 		if (dataID >= 30 && dataID <= 61) {
-			appearing2floor();
+			appearing3floor();
 		}
 		if (dataID >= 1 && dataID <= 29) {
+			appearing2floor();
+		}
+		if (dataID >= 62 && dataID <= 72) {
+			appearing4floor();
+		}
+		if (dataID >= 73 && dataID <= 79) {
 			appearing1floor();
 		}
+		
 
 
 	});
@@ -91,6 +98,8 @@ $leftLinks.forEach(el => {
 		}
 	});
 
+	
+
 	el.addEventListener('click', (e) => {
 		e.preventDefault();
 		let self = e.currentTarget;
@@ -99,19 +108,33 @@ $leftLinks.forEach(el => {
 		// let id = parseInt(currentElement.dataset.id);
 		let color = self.dataset.color;
 		let currentPolygon = currentElement.querySelectorAll('rect');
-		if (self.classList.contains('click')) {
-			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
-			self.classList.remove('active');
-			self.classList.remove('click');
+		while (array.length<=1) {
+			if (self.classList.contains('click')) {
+				if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
+				self.classList.remove('active');
+				self.classList.remove('click');
+				array.splice(arr.indexOf(selfClass));
+			}
+			else {
+				if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
+				self.classList.add('active');
+				self.classList.add('click');
+				array.push(selfClass.slice(-4))
+			}
+
 		}
-		else {
-			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
-			self.classList.add('active');
-			self.classList.add('click');
+		if (array) {
+			console.log(array)
 		}
+		
+		
+		
 		// requestData(id);
 	});
 });
+
+
+
 
 $mapLinks.forEach(el => {
 	el.addEventListener('mouseenter', (e) => {
@@ -431,6 +454,8 @@ class Graph {
 // Создаю сам граф
 const graph = new Graph();
 
+// *********** 2 этаж ***************
+
 graph.addVertex('1');
 graph.addVertex('2');
 graph.addVertex('3');
@@ -456,13 +481,45 @@ graph.addVertex('22');
 graph.addVertex('23');
 graph.addVertex('24');
 graph.addVertex('25');
-graph.addVertex('26');
-graph.addVertex('27');
-graph.addVertex('28');
-graph.addVertex('1239');
-graph.addVertex('100');
-graph.addVertex('29');
 
+
+// ********** узлы 2 этажа кабинетов целуются ************
+graph.addVertex('stair2floor');
+graph.addVertex('1231/1232');
+graph.addVertex('1233/1234');
+graph.addVertex('1235');
+graph.addVertex('1236');
+graph.addVertex('1229/1230');
+graph.addVertex('1228');
+graph.addVertex('1227');
+graph.addVertex('1239');
+graph.addVertex('1226');
+graph.addVertex('1225');
+graph.addVertex('1240');
+graph.addVertex('1212');
+graph.addVertex('1213');
+graph.addVertex('1222');
+graph.addVertex('1215');
+graph.addVertex('1216');
+graph.addVertex('1221');
+graph.addVertex('1219');
+graph.addVertex('1217');
+graph.addVertex('1211');
+graph.addVertex('1209');
+graph.addVertex('1201');
+graph.addVertex('1202');
+graph.addVertex('1203');
+graph.addVertex('1208');
+graph.addVertex('1204');
+graph.addVertex('1205');
+graph.addVertex('1207');
+graph.addVertex('1206');
+
+
+
+
+
+// ******* 2 этаж грани **********
 graph.addEdge('1', '2');
 graph.addEdge('2', '1');
 graph.addEdge('2', '3');
@@ -481,58 +538,425 @@ graph.addEdge('8', '9');
 graph.addEdge('9', '8');
 graph.addEdge('9', '10');
 graph.addEdge('10', '9');
-graph.addEdge('10', '11');
-graph.addEdge('10', '12');
-graph.addEdge('11', '10');
-graph.addEdge('11', '14');
-graph.addEdge('12', '10');
+graph.addEdge('9', '11');
+graph.addEdge('11', '9');
+graph.addEdge('10', '13');
+graph.addEdge('13', '10');
+graph.addEdge('11', '12');
+graph.addEdge('12', '11');
 graph.addEdge('12', '13');
 graph.addEdge('13', '12');
 graph.addEdge('13', '14');
-graph.addEdge('14', '11');
 graph.addEdge('14', '13');
-graph.addEdge('14', '15');
-graph.addEdge('15', '14');
+graph.addEdge('14', '12');
+graph.addEdge('12', '14');
+graph.addEdge('stair2floor', '14');
+graph.addEdge('14', 'stair2floor');
 graph.addEdge('13', '15');
 graph.addEdge('15', '13');
-graph.addEdge('14', '16');
-graph.addEdge('16', '14');
+graph.addEdge('15', '16');
+graph.addEdge('16', '15');
 graph.addEdge('16', '17');
 graph.addEdge('17', '16');
 graph.addEdge('17', '18');
 graph.addEdge('18', '17');
 graph.addEdge('18', '19');
 graph.addEdge('19', '18');
-graph.addEdge('19', '20');
-graph.addEdge('20', '19');
+graph.addEdge('20', '12');
+graph.addEdge('12', '20');
 graph.addEdge('20', '21');
-graph.addEdge('21', '20');
-graph.addEdge('13', '22');
-graph.addEdge('22', '13');
+graph.addEdge('21', '22');
+graph.addEdge('22', '21');
 graph.addEdge('22', '23');
 graph.addEdge('23', '22');
 graph.addEdge('23', '24');
 graph.addEdge('24', '23');
 graph.addEdge('24', '25');
 graph.addEdge('25', '24');
-graph.addEdge('25', '26');
-graph.addEdge('26', '25');
+
+// ************** 2 этаж грани кабинетов ****************
+graph.addEdge('1231/1232', '1');
+graph.addEdge('1', '1231/1232');
+graph.addEdge('1', '1233/1234');
+graph.addEdge('1233/1234', '1');
+graph.addEdge('2', '1235');
+graph.addEdge('1235', '2');
+graph.addEdge('3', '1236');
+graph.addEdge('1236', '3');
+graph.addEdge('1229/1230', '3');
+graph.addEdge('3', '1229/1230');
+graph.addEdge('4', '1228');
+graph.addEdge('1228', '4');
+graph.addEdge('1227', '5');
+graph.addEdge('5', '1227');
+graph.addEdge('6', '1239');
+graph.addEdge('1239', '6');
+graph.addEdge('1226', '7');
+graph.addEdge('7', '1226');
+graph.addEdge('1225', '8');
+graph.addEdge('8', '1225');
+graph.addEdge('8', '1240');
+graph.addEdge('1240', '8');
+graph.addEdge('15', '1212');
+graph.addEdge('1212', '15');
+graph.addEdge('16', '1213');
+graph.addEdge('1213', '16');
+graph.addEdge('1222', '16');
+graph.addEdge('16', '1222');
+graph.addEdge('17', '1215');
+graph.addEdge('1215', '17');
+graph.addEdge('1216', '18');
+graph.addEdge('18', '1216');
+graph.addEdge('18', '1221');
+graph.addEdge('1221', '18');
+graph.addEdge('1219', '19');
+graph.addEdge('19', '1219');
+graph.addEdge('19', '1217');
+graph.addEdge('1217', '19');
+graph.addEdge('1211', '14');
+graph.addEdge('14', '1211');
+graph.addEdge('20', '1209');
+graph.addEdge('1209', '20');
+graph.addEdge('1201', '20');
+graph.addEdge('20', '1201');
+graph.addEdge('21', '1202');
+graph.addEdge('1202', '21');
+graph.addEdge('1203', '22');
+graph.addEdge('22', '1203');
+graph.addEdge('22', '1208');
+graph.addEdge('1208', '22');
+graph.addEdge('1204', '23');
+graph.addEdge('23', '1204');
+graph.addEdge('24', '1205');
+graph.addEdge('1205', '24');
+graph.addEdge('1207', '24');
+graph.addEdge('24', '1207');
+graph.addEdge('25', '1206');
+graph.addEdge('1206', '25');
+
+
+
+
+// *********** 3 этаж ***************
+
+graph.addVertex('26');
+graph.addVertex('27');
+graph.addVertex('28');
+graph.addVertex('29');
+graph.addVertex('30');
+graph.addVertex('31');
+graph.addVertex('32');
+graph.addVertex('33');
+graph.addVertex('34');
+graph.addVertex('35');
+graph.addVertex('36');
+graph.addVertex('37');
+graph.addVertex('38');
+graph.addVertex('39');
+graph.addVertex('40');
+graph.addVertex('41');
+graph.addVertex('42');
+graph.addVertex('43');
+graph.addVertex('44');
+graph.addVertex('45');
+graph.addVertex('46');
+graph.addVertex('47');
+graph.addVertex('48');
+graph.addVertex('49');
+graph.addVertex('50');
+
+// ********** узлы 3 этажа кабинетов целуются ************
+graph.addVertex('stair3floor');
+graph.addVertex('1427');
+graph.addVertex('1428');
+graph.addVertex('1429');
+graph.addVertex('1430');
+graph.addVertex('1431');
+graph.addVertex('1426');
+graph.addVertex('1425');
+graph.addVertex('1424');
+graph.addVertex('1432');
+graph.addVertex('1423');
+graph.addVertex('1433');
+graph.addVertex('1422');
+graph.addVertex('1432');
+graph.addVertex('1320');
+graph.addVertex('1312');
+graph.addVertex('1313');
+graph.addVertex('1319');
+graph.addVertex('1314');
+graph.addVertex('1318');
+graph.addVertex('1317');
+graph.addVertex('1316');
+graph.addVertex('1315');
+graph.addVertex('1311');
+graph.addVertex('1309');
+graph.addVertex('1308');
+graph.addVertex('1307');
+graph.addVertex('1306');
+graph.addVertex('1305');
+graph.addVertex('1304');
+graph.addVertex('1303');
+graph.addVertex('1302');
+graph.addVertex('1301');
+
+
+
+// ******* 3 этаж грани **********
 graph.addEdge('26', '27');
 graph.addEdge('27', '26');
-graph.addEdge('13', '28');
-graph.addEdge('28', '13');
-graph.addEdge('14', '28');
-graph.addEdge('28', '14');
-graph.addEdge('14', '100');
-graph.addEdge('100', '14');
-graph.addEdge('100', '27');
-graph.addEdge('27', '100');
+graph.addEdge('27', '28');
+graph.addEdge('28', '27');
+graph.addEdge('28', '29');
+graph.addEdge('29', '28');
+graph.addEdge('29', '30');
+graph.addEdge('30', '29');
+graph.addEdge('30', '31');
+graph.addEdge('31', '30');
+graph.addEdge('31', '32');
+graph.addEdge('32', '31');
+graph.addEdge('32', '33');
+graph.addEdge('33', '32');
+graph.addEdge('33', '34');
+graph.addEdge('34', '33');
+graph.addEdge('34', '35');
+graph.addEdge('35', '34');
+graph.addEdge('34', '36');
+graph.addEdge('36', '34');
+graph.addEdge('35', '38');
+graph.addEdge('38', '35');
+graph.addEdge('36', '37');
+graph.addEdge('37', '36');
+graph.addEdge('37', '38');
+graph.addEdge('38', '37');
+graph.addEdge('38', '39');
+graph.addEdge('39', '38');
+graph.addEdge('39', '37');
+graph.addEdge('37', '39');
+graph.addEdge('stair3floor', '39');
+graph.addEdge('39', 'stair3floor');
+graph.addEdge('38', '40');
+graph.addEdge('40', '38');
+graph.addEdge('40', '41');
+graph.addEdge('41', '40');
+graph.addEdge('41', '42');
+graph.addEdge('42', '41');
+graph.addEdge('42', '43');
+graph.addEdge('43', '42');
+graph.addEdge('43', '44');
+graph.addEdge('44', '43');
+graph.addEdge('37', '45');
+graph.addEdge('45', '37');
+graph.addEdge('45', '46');
+graph.addEdge('46', '47');
+graph.addEdge('47', '46');
+graph.addEdge('47', '48');
+graph.addEdge('48', '47');
+graph.addEdge('48', '49');
+graph.addEdge('49', '48');
+graph.addEdge('49', '50');
+graph.addEdge('50', '49');
 
-graph.addEdge('1239', '6');
+// ************** 3 этаж грани кабинетов ****************
+graph.addEdge('1428', '26');
+graph.addEdge('26', '1428');
+graph.addEdge('27', '1427');
+graph.addEdge('1427', '27');
+graph.addEdge('28', '1430');
+graph.addEdge('1430', '28');
+graph.addEdge('29', '1431');
+graph.addEdge('1431', '29');
+graph.addEdge('1426', '29');
+graph.addEdge('29', '1426');
+graph.addEdge('30', '1425');
+graph.addEdge('1425', '30');
+graph.addEdge('1432', '31');
+graph.addEdge('31', '1432');
+graph.addEdge('31', '1424');
+graph.addEdge('1424', '31');
+graph.addEdge('1423', '32');
+graph.addEdge('32', '1423');
+graph.addEdge('32', '1433');
+graph.addEdge('1433', '32');
+graph.addEdge('1432', '33');
+graph.addEdge('33', '1432');
+graph.addEdge('33', '1422');
+graph.addEdge('1422', '33');
+graph.addEdge('1320', '40');
+graph.addEdge('40', '1320');
+graph.addEdge('1312', '40');
+graph.addEdge('40', '1312');
+graph.addEdge('41', '1319');
+graph.addEdge('1319', '41');
+graph.addEdge('1313', '41');
+graph.addEdge('41', '1313');
+graph.addEdge('42', '1318');
+graph.addEdge('1318', '42');
+graph.addEdge('1317', '43');
+graph.addEdge('43', '1317');
+graph.addEdge('43', '1314');
+graph.addEdge('1314', '43');
+graph.addEdge('1316', '44');
+graph.addEdge('44', '1316');
+graph.addEdge('44', '1315');
+graph.addEdge('1315', '44');
+graph.addEdge('1301', '45');
+graph.addEdge('45', '1301');
+graph.addEdge('45', '1309');
+graph.addEdge('1309', '45');
+graph.addEdge('1302', '46');
+graph.addEdge('46', '1302');
+graph.addEdge('47', '1303');
+graph.addEdge('1303', '47');
+graph.addEdge('1308', '47');
+graph.addEdge('47', '1308');
+graph.addEdge('48', '1304');
+graph.addEdge('1304', '48');
+graph.addEdge('1305', '49');
+graph.addEdge('49', '1305');
+graph.addEdge('49', '1307');
+graph.addEdge('1307', '49');
+graph.addEdge('1306', '50');
+graph.addEdge('50', '1306');
+graph.addEdge('39', '1311');
+graph.addEdge('1311', '39');
 
-  
 
-// let route = graph.findShortestPath('1', '27')
+
+// *********** 4 этаж ***************
+graph.addVertex('51');
+graph.addVertex('52');
+graph.addVertex('53');
+graph.addVertex('54');
+graph.addVertex('55');
+graph.addVertex('56');
+graph.addVertex('57');
+graph.addVertex('58');
+graph.addVertex('59');
+graph.addVertex('60');
+graph.addVertex('61');
+graph.addVertex('62');
+
+// ********** узлы 4 этажа кабинетов целуются ************
+graph.addVertex('stair4floor');
+graph.addVertex('1420');
+graph.addVertex('1419');
+graph.addVertex('1417');
+graph.addVertex('1415');
+graph.addVertex('1414');
+graph.addVertex('1413');
+graph.addVertex('1412');
+graph.addVertex('1411');
+graph.addVertex('1409');
+graph.addVertex('1408');
+graph.addVertex('1407');
+graph.addVertex('1406');
+graph.addVertex('1403');
+graph.addVertex('1402');
+graph.addVertex('1401');
+
+// ******* 4 этаж грани **********
+graph.addEdge('stair4floor', '51');
+graph.addEdge('51', 'stair4floor');
+graph.addEdge('51', '52');
+graph.addEdge('52', '51');
+graph.addEdge('52', '53');
+graph.addEdge('53', '52');
+graph.addEdge('53', '54');
+graph.addEdge('54', '53');
+graph.addEdge('54', '55');
+graph.addEdge('55', '54');
+graph.addEdge('55', '56');
+graph.addEdge('56', '55');
+graph.addEdge('56', '57');
+graph.addEdge('57', '56');
+graph.addEdge('51', '62');
+graph.addEdge('62', '51');
+graph.addEdge('62', '58');
+graph.addEdge('58', '62');
+graph.addEdge('58', '62');
+graph.addEdge('58', '59');
+graph.addEdge('59', '58');
+graph.addEdge('59', '60');
+graph.addEdge('60', '59');
+graph.addEdge('60', '61');
+graph.addEdge('61', '60');
+
+// ************** 4 этаж грани кабинетов ****************
+graph.addEdge('1420', '53');
+graph.addEdge('53', '1420');
+graph.addEdge('53', '1412');
+graph.addEdge('1412', '53');
+graph.addEdge('1413', '54');
+graph.addEdge('54', '1413');
+graph.addEdge('56', '1419');
+graph.addEdge('1419', '56');
+graph.addEdge('1414', '56');
+graph.addEdge('56', '1414');
+graph.addEdge('57', '1417');
+graph.addEdge('1417', '57');
+graph.addEdge('1415', '57');
+graph.addEdge('57', '1415');
+graph.addEdge('51', '1411');
+graph.addEdge('1411', '51');
+graph.addEdge('1401', '58');
+graph.addEdge('58', '1401');
+graph.addEdge('58', '1409');
+graph.addEdge('1409', '58');
+graph.addEdge('1402', '59');
+graph.addEdge('59', '1402');
+graph.addEdge('60', '1403');
+graph.addEdge('1403', '60');
+graph.addEdge('1408', '60');
+graph.addEdge('60', '1408');
+graph.addEdge('61', '1406');
+graph.addEdge('1406', '61');
+graph.addEdge('1407', '61');
+graph.addEdge('61', '1407');
+
+// *********** 1 этаж ***************
+graph.addVertex('63');
+graph.addVertex('64');
+graph.addVertex('65');
+graph.addVertex('66');
+graph.addVertex('67');
+
+// ********** узлы 1 этажа кабинетов целуются ************
+graph.addVertex('stair1floor');
+graph.addVertex('1126');
+graph.addVertex('1124');
+graph.addVertex('1122');
+graph.addVertex('1121');
+graph.addVertex('1119');
+graph.addVertex('1103');
+
+// ******* 4 этаж грани **********
+graph.addEdge('stair1floor', '63');
+graph.addEdge('63', 'stair1floor');
+graph.addEdge('63', '64');
+graph.addEdge('64', '63');
+graph.addEdge('64', '65');
+graph.addEdge('65', '64');
+graph.addEdge('65', '66');
+graph.addEdge('66', '65');
+graph.addEdge('66', '67');
+graph.addEdge('67', '66');
+
+// ************** 1 этаж грани кабинетов ****************
+graph.addEdge('63', '1103');
+graph.addEdge('1103', '63');
+graph.addEdge('1126', '64');
+graph.addEdge('64', '1126');
+graph.addEdge('65', '1124');
+graph.addEdge('1124', '65');
+graph.addEdge('1122', '66');
+graph.addEdge('66', '1122');
+graph.addEdge('67', '1121');
+graph.addEdge('1121', '67');
+graph.addEdge('1119', '67');
+graph.addEdge('67', '1119');
+
+let route = graph.findShortestPath('stair2floor', '1222')
 for (let i = 0; i < route.length - 1; i += 1) {
 	let circle1 = document.getElementById(route[i]);
 	let circle2 = document.getElementById(route[i + 1]);
