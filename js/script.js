@@ -1034,6 +1034,7 @@ graph.addEdge('1119', '67');
 graph.addEdge('67', '1119');
 
 
+
 // let route = graph.findShortestPath('stair2floor', '1222')
 function drawRoute(route, currentLevel) {
 	let level = document.getElementById(currentLevel);
