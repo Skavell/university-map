@@ -3,20 +3,29 @@ const $leftLinks = document.querySelectorAll('.left-menu a'),
 	$info = document.querySelector('.info	');
 
 
-const requestData = (id = 1) => {
-	fetch('data.json')
-		.then((response) => {
-			return response.json();
-		})
-		.then((data) => {
-			$info.innerHTML = `
-			<h2>${data[id - 1].district}</h2>
-			<p>${data[id - 1].info}</p>
-		`;
-		});
-};
+// const requestData = (id = 1) => {
+// 	fetch('data.json')
+// 		.then((response) => {
+// 			return response.json();
+// 		})
+// 		.then((data) => {
+// 			$info.innerHTML = `
+// 			<h2>${data[id - 1].district}</h2>
+// 			<p>${data[id - 1].info}</p>
+// 		`;
+// 		});
+// };
 
-requestData();
+// requestData();
+function hideSwitchCircle() {
+	let circleArr = document.querySelectorAll('circle');
+	if (circleArr[0].style.display === 'none'){
+		circleArr.forEach(el => el.style.display = 'block');
+	}
+	else {
+		circleArr.forEach(el => el.style.display = 'none');
+	}
+}
 
 function search() {
 	let input = document.getElementById("search");
@@ -52,9 +61,10 @@ function search2() {
 	}
 }
 
+hideSwitchCircle();
 document.addEventListener('keyup', search);
 document.addEventListener('keyup', search2);
-let array = [];
+let arrayClickCab = [];
 $leftLinks.forEach(el => {
 	el.addEventListener('mouseenter', (e) => {
 		let self = e.currentTarget;
@@ -108,25 +118,54 @@ $leftLinks.forEach(el => {
 		// let id = parseInt(currentElement.dataset.id);
 		let color = self.dataset.color;
 		let currentPolygon = currentElement.querySelectorAll('rect');
-		while (array.length<=1) {
-			if (self.classList.contains('click')) {
-				if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
-				self.classList.remove('active');
-				self.classList.remove('click');
-				array.splice(arr.indexOf(selfClass));
+		if (self.classList.contains('click')) {
+			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
+			self.classList.remove('active');
+			self.classList.remove('click');
+			if (selfClass.length <= 8) {
+				arrayClickCab.splice(arrayClickCab.indexOf(selfClass.slice(-4)),1);
 			}
 			else {
-				if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
-				self.classList.add('active');
-				self.classList.add('click');
-				array.push(selfClass.slice(-4))
+				arrayClickCab.splice(arrayClickCab.indexOf(selfClass.slice(-9)),1);
 			}
-
+			
 		}
-		if (array) {
-			console.log(array)
+		else {
+			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
+			self.classList.add('active');
+			self.classList.add('click');
+			if (selfClass.length <= 8) {
+				arrayClickCab.push(selfClass.slice(-4));
+			}
+			else {
+				arrayClickCab.push(selfClass.slice(-9));
+			}
 		}
-		
+		if (arrayClickCab) {
+			console.log(arrayClickCab);
+		}
+		if (arrayClickCab.length == 2) {
+			let beginCab = arrayClickCab[0];
+			let endCab = arrayClickCab[1];
+			let tempCab = document.getElementById(beginCab);
+			currentLevel1cab = tempCab.parentNode.id;
+			let tempCab2 = document.getElementById(endCab);
+			currentLevel2cab = tempCab2.parentNode.id;
+			if (currentLevel1cab == currentLevel2cab) {
+				let route = graph.findShortestPath(beginCab, endCab);
+				drawRoute(route, currentLevel1cab);
+			}
+			else {
+				let route = graph.findShortestPath(beginCab, `stair${currentLevel1cab.slice(-1)}floor`);
+				drawRoute(route, currentLevel1cab);
+				route = graph.findShortestPath(`stair${currentLevel2cab.slice(-1)}floor`, endCab);
+				drawRoute(route, currentLevel2cab);
+			}
+			
+		}
+		else {
+			removeDrawRoute();
+		}
 		
 		
 		// requestData(id);
@@ -174,11 +213,48 @@ $mapLinks.forEach(el => {
 			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill:#fff8f8;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none`);
 			currentElement.forEach(el => el.classList.remove('active'));
 			currentElement.forEach(el => el.classList.remove('click'));
+			if (selfClass.length <= 8) {
+				arrayClickCab.splice(arrayClickCab.indexOf(selfClass.slice(-4)),1);
+			}
+			else {
+				arrayClickCab.splice(arrayClickCab.indexOf(selfClass.slice(-9)),1);
+			}
 		}
 		else {
 			if (currentPolygon) currentPolygon.forEach(el => el.style.cssText = `fill: ${color}; stroke-width: 2px;`);
 			currentElement.forEach(el => el.classList.add('active'));
 			currentElement.forEach(el => el.classList.add('click'));
+			if (selfClass.length <= 8) {
+				arrayClickCab.push(selfClass.slice(-4));
+			}
+			else {
+				arrayClickCab.push(selfClass.slice(-9));
+			}
+		}
+		if (arrayClickCab) {
+			console.log(arrayClickCab);
+		}
+		if (arrayClickCab.length == 2) {
+			let beginCab = arrayClickCab[0];
+			let endCab = arrayClickCab[1];
+			let tempCab = document.getElementById(beginCab);
+			currentLevel1cab = tempCab.parentNode.id;
+			let tempCab2 = document.getElementById(endCab);
+			currentLevel2cab = tempCab2.parentNode.id;
+			if (currentLevel1cab == currentLevel2cab) {
+				let route = graph.findShortestPath(beginCab, endCab);
+				drawRoute(route, currentLevel1cab);
+			}
+			else {
+				let route = graph.findShortestPath(beginCab, `stair${currentLevel1cab.slice(-1)}floor`);
+				drawRoute(route, currentLevel1cab);
+				route = graph.findShortestPath(`stair${currentLevel2cab.slice(-1)}floor`, endCab);
+				drawRoute(route, currentLevel2cab);
+			}
+			
+		}
+		else {
+			removeDrawRoute();
 		}
 		// requestData(id);
 	});
@@ -760,6 +836,7 @@ graph.addEdge('50', '49');
 // ************** 3 этаж грани кабинетов ****************
 graph.addEdge('1428', '26');
 graph.addEdge('26', '1428');
+graph.addEdge('27', '1429');
 graph.addEdge('27', '1427');
 graph.addEdge('1427', '27');
 graph.addEdge('28', '1430');
@@ -956,20 +1033,28 @@ graph.addEdge('1121', '67');
 graph.addEdge('1119', '67');
 graph.addEdge('67', '1119');
 
-let route = graph.findShortestPath('stair2floor', '1222')
-for (let i = 0; i < route.length - 1; i += 1) {
-	let circle1 = document.getElementById(route[i]);
-	let circle2 = document.getElementById(route[i + 1]);
-	let x1 = circle1.getAttribute('cx');
-	let y1 = circle1.getAttribute('cy');
-	let x2 = circle2.getAttribute('cx');
-	let y2 = circle2.getAttribute('cy');
-	let newElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
-	newElement.setAttribute('d', 'M' + x1 + ',' + y1 + 'L' + x2 + ',' + y2);
-	newElement.style.stroke = '#000000';
-	newElement.style.strokeWidth = '2px'; 
-	svgImage1.appendChild(newElement);
-
+// let route = graph.findShortestPath('stair2floor', '1222')
+function drawRoute(route, currentLevel) {
+	let level = document.getElementById(currentLevel);
+	for (let i = 0; i < route.length - 1; i += 1) {
+		let circle1 = document.getElementById(route[i]);
+		let circle2 = document.getElementById(route[i + 1]);
+		let x1 = circle1.getAttribute('cx');
+		let y1 = circle1.getAttribute('cy');
+		let x2 = circle2.getAttribute('cx');
+		let y2 = circle2.getAttribute('cy');
+		let newElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+		newElement.setAttribute('d', 'M' + x1 + ',' + y1 + 'L' + x2 + ',' + y2);
+		newElement.style.stroke = '#000000';
+		newElement.style.strokeWidth = '2px';
+		newElement.setAttribute('id', 'route');
+		level.appendChild(newElement);
+	}
 }
 
+function removeDrawRoute() {
+	let drawPaths = document.querySelectorAll(`.map path[id="route"]`);
+	console.log(drawPaths);
+	if (drawPaths) drawPaths.forEach(el => el.remove());
+}
 
