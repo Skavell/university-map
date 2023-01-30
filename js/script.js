@@ -755,7 +755,7 @@ graph.addVertex('1432');
 graph.addVertex('1423');
 graph.addVertex('1433');
 graph.addVertex('1422');
-graph.addVertex('1432');
+graph.addVertex('1434');
 graph.addVertex('1320');
 graph.addVertex('1312');
 graph.addVertex('1313');
@@ -855,8 +855,8 @@ graph.addEdge('1423', '32');
 graph.addEdge('32', '1423');
 graph.addEdge('32', '1433');
 graph.addEdge('1433', '32');
-graph.addEdge('1432', '33');
-graph.addEdge('33', '1432');
+graph.addEdge('1434', '33');
+graph.addEdge('33', '1434');
 graph.addEdge('33', '1422');
 graph.addEdge('1422', '33');
 graph.addEdge('1320', '40');
@@ -1033,6 +1033,7 @@ graph.addEdge('1121', '67');
 graph.addEdge('1119', '67');
 graph.addEdge('67', '1119');
 
+
 // let route = graph.findShortestPath('stair2floor', '1222')
 function drawRoute(route, currentLevel) {
 	let level = document.getElementById(currentLevel);
@@ -1049,6 +1050,7 @@ function drawRoute(route, currentLevel) {
 		newElement.style.strokeWidth = '2px';
 		newElement.setAttribute('id', 'route');
 		level.appendChild(newElement);
+		
 	}
 }
 
