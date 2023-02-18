@@ -117,7 +117,7 @@ $leftLinks.forEach((el) => {
       }
       self.classList.remove('active');
       self.classList.remove('click');
-      if (selfClass.length <= 8) {
+      if (selfClass.length <= 9) {
         arrayClickCab.splice(arrayClickCab.indexOf(selfClass.slice(-4)), 1);
       } else {
         arrayClickCab.splice(arrayClickCab.indexOf(selfClass.slice(-9)), 1);
@@ -126,7 +126,7 @@ $leftLinks.forEach((el) => {
       if (currentPolygon) currentPolygon.forEach((el) => (el.style.cssText = `fill: ${color}; stroke-width: 2px;`));
       self.classList.add('active');
       self.classList.add('click');
-      if (selfClass.length <= 8) {
+      if (selfClass.length <= 9) {
         arrayClickCab.push(selfClass.slice(-4));
       } else {
         arrayClickCab.push(selfClass.slice(-9));
