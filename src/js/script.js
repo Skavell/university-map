@@ -52,7 +52,7 @@ function search2() {
   }
 }
 
-// hideSwitchCircle();
+hideSwitchCircle();
 document.addEventListener('keyup', search);
 document.addEventListener('keyup', search2);
 const arrayClickCab = [];
