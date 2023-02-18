@@ -206,7 +206,7 @@ $mapLinks.forEach((el) => {
       }
       currentElement.forEach((el) => el.classList.remove('active'));
       currentElement.forEach((el) => el.classList.remove('click'));
-      if (selfClass.length <= 8) {
+      if (selfClass.length <= 9) {
         arrayClickCab.splice(arrayClickCab.indexOf(selfClass.slice(-4)), 1);
       } else {
         arrayClickCab.splice(arrayClickCab.indexOf(selfClass.slice(-9)), 1);
@@ -215,7 +215,7 @@ $mapLinks.forEach((el) => {
       if (currentPolygon) currentPolygon.forEach((el) => (el.style.cssText = `fill: ${color}; stroke-width: 2px;`));
       currentElement.forEach((el) => el.classList.add('active'));
       currentElement.forEach((el) => el.classList.add('click'));
-      if (selfClass.length <= 8) {
+      if (selfClass.length <= 9) {
         arrayClickCab.push(selfClass.slice(-4));
       } else {
         arrayClickCab.push(selfClass.slice(-9));
@@ -906,6 +906,7 @@ graph.addVertex('1418');
 graph.addVertex('1416');
 graph.addVertex('1404');
 graph.addVertex('1405');
+graph.addVertex('bmed');
 
 // graph.addVertex('med');
 
@@ -951,7 +952,7 @@ graph.addEdge('1433', '55');
 graph.addEdge('1422', '56');
 graph.addEdge('1434', '56');
 graph.addEdge('1435', '59');
-// graph.addEdge('med', '89');
+graph.addEdge('bmed', '89');
 graph.addEdge('1420', '60');
 graph.addEdge('1412', '60');
 graph.addEdge('1419', '61');
@@ -1013,10 +1014,10 @@ graph.addVertex('1138');
 graph.addVertex('1139');
 graph.addVertex('1140');
 graph.addVertex('1144');
-graph.addVertex('1144a');
-graph.addVertex('1144b');
-graph.addVertex('1144v');
-graph.addVertex('11444');
+graph.addVertex('144a');
+graph.addVertex('144b');
+graph.addVertex('144v');
+graph.addVertex('144g');
 graph.addVertex('1107');
 
 // ******* 1 этаж грани **********
@@ -1028,7 +1029,7 @@ graph.addEdge('75', '76');
 graph.addEdge('77', '76');
 graph.addEdge('77', '78');
 graph.addEdge('79', '78');
-graph.addEdge('79', '80');
+graph.addEdge('78', '80');
 graph.addEdge('81', '80');
 graph.addEdge('81', '82');
 graph.addEdge('83', '82');
@@ -1042,11 +1043,11 @@ graph.addEdge('87', '88');
 // ************** 1 этаж грани кабинетов ****************
 graph.addEdge('71', '1144');
 graph.addEdge('71', '1140');
-graph.addEdge('71', '1144a');
-graph.addEdge('72', '1144b');
+graph.addEdge('71', '144a');
+graph.addEdge('72', '144b');
 graph.addEdge('72', '1139');
-graph.addEdge('73', '1144v');
-graph.addEdge('74', '11444');
+graph.addEdge('73', '144v');
+graph.addEdge('74', '144g');
 graph.addEdge('74', '1138');
 graph.addEdge('75', '1137');
 graph.addEdge('79', '1103');
